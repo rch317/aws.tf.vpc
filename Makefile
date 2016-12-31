@@ -17,6 +17,9 @@ plan:
 	terraform get --update
 	terraform plan  -out terraform.tfplan -var-file="terraform.tfvars"
 
+apply:
+	terraform apply terraform.tfplan
+
 destroy:
 	@echo "********************************************************************"
 	@echo "********************************************************************"
