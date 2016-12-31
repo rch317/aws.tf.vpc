@@ -15,3 +15,5 @@ variable "team" {}
 variable "azs" {}
 variable "private_subnets" {}
 variable "public_subnets" {}
+variable "key_name"        { }
+variable "bastion_instance_type" { }
