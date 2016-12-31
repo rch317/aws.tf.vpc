@@ -2,15 +2,18 @@
 # This module creates all networking resources
 #--------------------------------------------------------------
 
-variable "cidr_block" { }
-variable "enable_dns_support" { }
-variable "enable_dns_hostnames" { }
-variable "name" { }
-variable "environment" { }
-variable "team" { }
-variable "azs" { }
-variable "private_subnets" { }
-variable "public_subnets" { }
+variable "cidr_block" {}
+variable "enable_dns_support" {}
+variable "enable_dns_hostnames" {}
+variable "name" {}
+variable "environment" {}
+variable "region" {}
+variable "team" {}
+variable "azs" {}
+variable "private_subnets" {}
+variable "public_subnets" {}
+variable "key_name" {}
+variable "bastion_instance_type" {}
 
 module "vpc" {
   source               = "vpc"
@@ -48,6 +51,18 @@ module "private_subnet" {
   nat_gateway_ids = "${module.nat.nat_gateway_ids}"
 }
 
+module "bastion" {
+  source = "bastion"
+
+  name              = "${var.name}-bastion"
+  vpc_id            = "${module.vpc.vpc_id}"
+  vpc_cidr          = "${module.vpc.vpc_cidr}"
+  region            = "${var.region}"
+  public_subnet_ids = "${module.public_subnet.subnet_ids}"
+  key_name          = "${var.key_name}"
+  instance_type     = "${var.bastion_instance_type}"
+}
+
 output "vpc_id" {
   value = "${module.vpc.vpc_id}"
 }
@@ -62,4 +77,16 @@ output "private_subnet_ids" {
 
 output "nat_gateway_ids" {
   value = "${module.nat.nat_gateway_ids}"
+}
+
+output "user" {
+  value = "ubuntu"
+}
+
+output "private_ip" {
+  value = "${module.bastion.private_ip}"
+}
+
+output "public_ip" {
+  value = "${module.bastion.public_ip}"
 }
