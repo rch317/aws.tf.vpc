@@ -36,4 +36,10 @@ BUCKET="my-s3-bucket"
 Use the Makefile to:
 - make config
   - This will configure the remote state
-make plan
+- make plan
+  - This will create/update your plan file
+- make apply
+  - This will apply the plan. Make sure you review the plan before running the apply
+- make destroy
+  - This will destroy your build, currently there is a 10 second delay to allow time for aborting this choice.
+
