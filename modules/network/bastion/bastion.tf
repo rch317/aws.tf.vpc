@@ -50,7 +50,7 @@ resource "aws_security_group" "bastion" {
 }
 
 module "ami" {
-  source        = "github.com/terraform-community-modules/tf_aws_ubuntu_ami/ebs"
+  source        = "github.com/nextgearcapital/tf_aws_ubuntu_ami/ebs"
   instance_type = "${var.instance_type}"
   region        = "${var.region}"
   distribution  = "trusty"
