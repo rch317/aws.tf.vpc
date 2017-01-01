@@ -9,9 +9,11 @@ Generic plan for creating a VPC in AWS. Based in part on the best-practices repo
   - Private subnets
   - NAT Gateway
     - AWS NAT Gateway and "physical" NAT for public subnets
+      - Currently debating the need for a physical NAT in public subnets
   - Security Groups
   - Bastion host(s)
     - To ASG or Not to ASG... That is the question!
+      - Currently do not provision the ASG - work in progress
 
 #### Set Local Environment Variables
 Set the below environment variables or this won't work...
