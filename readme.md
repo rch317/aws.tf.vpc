@@ -45,6 +45,3 @@ Use the Makefile to:
 - make destroy
   - This will destroy your build, currently there is a 10 second delay to allow time for aborting this choice.
 
-
-####
-end.
